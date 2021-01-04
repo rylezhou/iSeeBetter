@@ -1,15 +1,30 @@
 # iSeeBetter: Spatio-Temporal Video Super Resolution using Recurrent-Generative Back-Projection Networks
 
-Project for Stanford CS230: Deep Learning 
+
+<a href="https://link.springer.com/article/10.1007/s41095-020-0175-7"><p align=center><img src="https://github.com/amanchadha/iSeeBetter/blob/master/spr.jpg"/></p></a>
+
+Project for Stanford CS230: Deep Learning. Published in **Springer Journal of Computational Visual Media, September 2020, Tsinghua University Press**.
+This is the official PyTorch implementation of our paper.
+
+```Python3 | PyTorch | GANs | CNNs | ResNets | RNNs```
+
+---
 
 ### PDF: **[SpringerLink](https://link.springer.com/article/10.1007/s41095-020-0175-7)** | **[arXiv](https://arxiv.org/abs/2006.11161)** | **[amanchadha.com](https://amanchadha.com/research/ChadhaBrittoRoja_iSeeBetterCVM.pdf)**
 
-```Python3 | PyTorch | GANs | CNNs | ResNets | RNNs```
+### Misc: **<a href="https://www.youtube.com/watch?v=2HC0wdeQRiM">YouTube Video</a> | <a href="https://amanchadha.com/research/AmanChadha_CS230_Poster.pdf">Poster</a> | <a href="https://paperswithcode.com/paper/iseebetter-spatio-temporal-video-super">PapersWithCode</a> | <a href="https://www.researchgate.net/publication/342165676_iSeeBetter_Spatio-Temporal_Video_Super-Resolution_using_Recurrent_Generative_Back-Projection_Networks">ResearchGate</a> | <a href="https://www.mendeley.com/catalogue/3e9119ff-174b-3c07-9683-aafe8800af32/">Mendeley</a> | <a href="https://ui.adsabs.harvard.edu/abs/2020arXiv200611161C/abstract">NASA ADS</a> | <a href="https://www.semanticscholar.org/paper/iSeeBetter%3A-Spatio-temporal-video-super-resolution-Chadha/96848693030ba20518ebb12b3dd2c4d4e04ec886">SemanticScholar</a>** 
+
+---
+
+We’re #1 on the Video Super Resolution leaderboard on [PapersWithCode](https://paperswithcode.com/sota/video-super-resolution-on-vid4-4x-upscaling)!
+<a href="https://paperswithcode.com/sota/video-super-resolution-on-vid4-4x-upscaling"><p align=center><img src="https://github.com/amanchadha/iSeeBetter/blob/master/vid4.jpg" width="600px" height="400px"/></p></a>
+
+---
 
 ![iSeeBetter_Poster](https://github.com/amanchadha/iSeeBetter/blob/master/AmanChadha_CS230_Poster.jpg)
 
 ## Citation
-If you found our work interesting, please cite the work as:
+If you found our work interesting, please cite it as:
 ```
 @article{Chadha2020iSeeBetter,
   title={{i}{S}ee{B}etter: Spatio-Temporal Video Super-Resolution using Recurrent Generative Back-Projection Networks},
@@ -17,7 +32,7 @@ If you found our work interesting, please cite the work as:
   journal={Springer Journal of Computational Visual Media, September 2020, Tsinghua University Press},
   volume={6},
   number={3},
-  pages={1-12},
+  pages={307-317},
   year={2020},
   publisher={Springer}
 }
@@ -81,7 +96,7 @@ Finally, with extensive experimentation, our results demonstrate that iSeeBetter
 
 ## Overview
 
-Recently, learning-based models have enhanced the performance of single-image super-resolution (SISR). However, applying SISR successively to each video frame leads to a lack of temporal coherency. Convolutional neural networks (CNNs) outperform traditional approaches in terms of image quality metrics such as peak signal to noise ratio (PSNR) and structural similarity (SSIM). However, generative adversarial networks (GANs) offer a competitive advantage by being able to mitigate the issue of a lack of finer texture details, usually seen with CNNs when super-resolving at large upscaling factors. We present iSeeBetter, a novel GAN-based spatio-temporal approach to video super-resolution (VSR) that renders temporally consistent super-resolution videos. iSeeBetter extracts spatial and temporal information from the current and neighboring frames using the concept of recurrent back-projection networks as its generator. Furthermore, to improve the ``naturality'' of the super-resolved image while eliminating artifacts seen with traditional algorithms, we utilize the discriminator from super-resolution generative adversarial network (SRGAN). Although mean squared error (MSE) as a primary loss-minimization objective improves PSNR/SSIM, these metrics may not capture fine details in the image resulting in  misrepresentation of perceptual quality. To address this, we use a four-fold (MSE, perceptual, adversarial, and total-variation (TV)) loss function. Our results demonstrate that iSeeBetter offers superior VSR fidelity and surpasses state-of-the-art performance. 
+Recently, learning-based models have enhanced the performance of single-image super-resolution (SISR). However, applying SISR successively to each video frame leads to a lack of temporal coherency. Convolutional neural networks (CNNs) outperform traditional approaches in terms of image quality metrics such as peak signal to noise ratio (PSNR) and structural similarity (SSIM). However, generative adversarial networks (GANs) offer a competitive advantage by being able to mitigate the issue of a lack of finer texture details, usually seen with CNNs when super-resolving at large upscaling factors. We present iSeeBetter, a novel GAN-based spatio-temporal approach to video super-resolution (VSR) that renders temporally consistent super-resolution videos. iSeeBetter extracts spatial and temporal information from the current and neighboring frames using the concept of recurrent back-projection networks as its generator. Furthermore, to improve the "naturality" of the super-resolved image while eliminating artifacts seen with traditional algorithms, we utilize the discriminator from super-resolution generative adversarial network (SRGAN). Although mean squared error (MSE) as a primary loss-minimization objective improves PSNR/SSIM, these metrics may not capture fine details in the image resulting in misrepresentation of perceptual quality. To address this, we use a four-fold (MSE, perceptual, adversarial, and total-variation (TV)) loss function. Our results demonstrate that iSeeBetter offers superior VSR fidelity and surpasses state-of-the-art performance.
  
 ![adjacent frame similarity](https://github.com/amanchadha/iSeeBetter/blob/master/images/iSeeBetter_AFS.png)
 <p align="center">Figure 1: Adjacent frame similarity</p>
@@ -142,6 +157,8 @@ Train the model using:
 To use the pre-trained model and test on a random video from within the dataset:
 
 ```python3 iSeeBetterTest.py```
+
+Use parameter ```--upscale_only``` to turn off initial downscaling.
 
 ## Acknowledgements
 
