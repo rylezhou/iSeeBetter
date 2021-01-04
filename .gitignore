@@ -1,13 +1,16 @@
 # Folders
 vimeo_septuplet/
-
+weights/
+vimeo90k/
+statistics/
 # Files
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-
+*.so
+*.whl
 # Distribution / packaging
 .Python
 Data/
@@ -113,3 +116,4 @@ venv.bak/
 *.mov
 *.avi
 *.mp4
+*.pdf
