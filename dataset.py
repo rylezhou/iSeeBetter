@@ -186,7 +186,7 @@ def rescale_img(img_in, scale):
     return img_in
 
 class DatasetFromFolder(data.Dataset):
-    def __init__(self, image_dir,nFrames, upscale_factor, data_augmentation, file_list, other_dataset, patch_size, future_frame, transform=None):
+    def __init__(self, image_dir,nFrames, upscale_factor, data_augmentation, file_list, other_dataset, patch_size, future_frame, transform=None, upscale_only=False):
         super(DatasetFromFolder, self).__init__()
         alist = [line.rstrip() for line in open(join(image_dir,file_list))]
         self.image_filenames = [join(image_dir,x) for x in alist]
@@ -197,12 +197,14 @@ class DatasetFromFolder(data.Dataset):
         self.other_dataset = other_dataset
         self.patch_size = patch_size
         self.future_frame = future_frame
+        self.upscale_only = upscale_only
+
 
     def __getitem__(self, index):
         if self.future_frame:
-            target, input, neigbor = load_img_future(self.image_filenames[index], self.nFrames, self.upscale_factor, self.other_dataset)
+            target, input, neigbor = load_img_future(self.image_filenames[index], self.nFrames, self.upscale_factor, self.other_dataset, upscale_only=False)
         else:
-            target, input, neigbor = load_img(self.image_filenames[index], self.nFrames, self.upscale_factor, self.other_dataset)
+            target, input, neigbor = load_img(self.image_filenames[index], self.nFrames, self.upscale_factor, self.other_dataset, upscale_only=False)
 
         if self.patch_size != 0:
             input, target, neigbor, _ = get_patch(input,target,neigbor,self.patch_size, self.upscale_factor, self.nFrames)
