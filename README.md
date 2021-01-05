@@ -56,6 +56,10 @@ Step 0: To load the required Python modules:
 ```bash
 pip3 install -r requirements.txt
 ```
+or
+```bash
+conda install --file requirements.txt
+```
 
 Also needed is [Pyflow](https://github.com/pathak22/pyflow) which is a Python wrapper for [Ce Liu's C++ implementation](https://people.csail.mit.edu/celiu/OpticalFlow/) of Coarse2Fine Optical Flow.
 Pyflow binaries that we used have been built for Ubuntu and macOS with Python 3.7 and are available in the repository.
