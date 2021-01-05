@@ -45,7 +45,7 @@ A. Chadha, J. Britto and M. M. Roja. iSeeBetter: Spatio-Temporal Video Super-Res
 ## Required Packages
 
 ```
-torch==1.3.0.post2
+torch==1.4
 pytorch-ssim==0.1
 numpy==1.16.4
 scikit-image==0.15.0
