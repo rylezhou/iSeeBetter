@@ -10,37 +10,8 @@ This is the official PyTorch implementation of our paper.
 
 ---
 
-### PDF: **[SpringerLink](https://link.springer.com/article/10.1007/s41095-020-0175-7)** | **[arXiv](https://arxiv.org/abs/2006.11161)** | **[amanchadha.com](https://amanchadha.com/research/ChadhaBrittoRoja_iSeeBetterCVM.pdf)**
+### PDF: **[SpringerLink](https://link.springer.com/article/10.1007/s41095-020-0175-7)** | **[arXiv](https://arxiv.org/abs/2006.11161)** 
 
-### Misc: **<a href="https://www.youtube.com/watch?v=2HC0wdeQRiM">YouTube Video</a> | <a href="https://amanchadha.com/research/AmanChadha_CS230_Poster.pdf">Poster</a> | <a href="https://paperswithcode.com/paper/iseebetter-spatio-temporal-video-super">PapersWithCode</a> | <a href="https://www.researchgate.net/publication/342165676_iSeeBetter_Spatio-Temporal_Video_Super-Resolution_using_Recurrent_Generative_Back-Projection_Networks">ResearchGate</a> | <a href="https://www.mendeley.com/catalogue/3e9119ff-174b-3c07-9683-aafe8800af32/">Mendeley</a> | <a href="https://ui.adsabs.harvard.edu/abs/2020arXiv200611161C/abstract">NASA ADS</a> | <a href="https://www.semanticscholar.org/paper/iSeeBetter%3A-Spatio-temporal-video-super-resolution-Chadha/96848693030ba20518ebb12b3dd2c4d4e04ec886">SemanticScholar</a>** 
-
----
-
-We’re #1 on the Video Super Resolution leaderboard on [PapersWithCode](https://paperswithcode.com/sota/video-super-resolution-on-vid4-4x-upscaling)!
-<a href="https://paperswithcode.com/sota/video-super-resolution-on-vid4-4x-upscaling"><p align=center><img src="https://github.com/amanchadha/iSeeBetter/blob/master/vid4.jpg" width="600px" height="400px"/></p></a>
-
----
-
-![iSeeBetter_Poster](https://github.com/amanchadha/iSeeBetter/blob/master/AmanChadha_CS230_Poster.jpg)
-
-## Citation
-If you found our work interesting, please cite it as:
-```
-@article{Chadha2020iSeeBetter,
-  title={{i}{S}ee{B}etter: Spatio-Temporal Video Super-Resolution using Recurrent Generative Back-Projection Networks},
-  author={Chadha, Aman and Britto, John and Roja, Mani M.},
-  journal={Springer Journal of Computational Visual Media, September 2020, Tsinghua University Press},
-  volume={6},
-  number={3},
-  pages={307-317},
-  year={2020},
-  publisher={Springer}
-}
-```
-
-```
-A. Chadha, J. Britto and M. M. Roja. iSeeBetter: Spatio-Temporal Video Super-Resolution using Recurrent Generative Back-Projection Networks. Springer Journal of Computational Visual Media, Tsinghua University Press, 6(3):1–11, 2020.
-```
 
 ## Required Packages
 
@@ -61,7 +32,7 @@ or
 conda install --file requirements.txt
 ```
 
-Also needed is [Pyflow](https://github.com/pathak22/pyflow) which is a Python wrapper for [Ce Liu's C++ implementation](https://people.csail.mit.edu/celiu/OpticalFlow/) of Coarse2Fine Optical Flow.
+Compile [Pyflow](https://github.com/pathak22/pyflow) which is a Python wrapper for [Ce Liu's C++ implementation](https://people.csail.mit.edu/celiu/OpticalFlow/) of Coarse2Fine Optical Flow.
 Pyflow binaries that we used have been built for Ubuntu and macOS with Python 3.7 and are available in the repository.
 If you need to rebuild Pyflow, (i) simply follow the instructions below or (ii) refer to the [Pyflow Git](https://github.com/pathak22/pyflow)
 
@@ -75,28 +46,6 @@ cp pyflow*.so ..
 
 Step 2: Train or test iSeeBetter using the instructions in the relevant sections below.
 
-## Elevator Pitch
-
-Deep learning has taken the world by storm! 
-
-Amongst the plethora of fields that deep learning has impacted, super resolution (which by definition is upscaling a low-res sample to a high-res sample) is one of them. 
-
-So why did I chose this topic? I felt that I could use my newly minted DL chops to develop something interesting which might propel the state-of-the-art further in the process. 
-
-Lets start with a low-res video sequence. 
-The easiest way to super-resolve such an input low-res video is to apply super resolution to every single frame individually. However, this would be wasteful of the temporal details inherent in video sequences, especially motion patterns.
-
-So I thought why not make my algorithm look left, look right - use details from adjacent images and train it with a GAN to extract fine-grained details such as complex textures.
-
-Presenting iSeeBetter, a novel spatio-temporal approach to video super resolution which uses as its generator a Recurrent Back-Projection Network (RBPN) to extract spatial and temporal information from the current and neighboring frames. 
-
-We use the discriminator within Super-Resolution Generative Adversarial Network (SRGAN) as our discriminator. 
-
-Now, as far as the loss function goes, using Mean Squared Error as a primary loss-minimization objective improves PSNR and SSIM which are important image quality metrics, but these metrics may not capture fine details in the image leading to misrepresentation of perceptual quality. 
-
-To address this, we use a four-fold loss function composed of adversarial loss, perceptual loss, MSE loss and Total-Variation loss. 
-
-Finally, with extensive experimentation, our results demonstrate that iSeeBetter offers superior VSR fidelity and surpasses state-of-the-art performance in the vast majority of SR cases.
 
 ## Overview
 
