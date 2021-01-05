@@ -1,10 +1,4 @@
-# iSeeBetter: Spatio-Temporal Video Super Resolution using Recurrent-Generative Back-Projection Networks Pytorch implementation
-
-
-Project for Stanford CS230: Deep Learning. Published in **Springer Journal of Computational Visual Media, September 2020, Tsinghua University Press**.
-This is the official PyTorch implementation of our paper.
-
-```Python3 | PyTorch | GANs | CNNs | ResNets | RNNs```
+# Working Version of iSeeBetter: Spatio-Temporal Video Super Resolution using Recurrent-Generative Back-Projection Networks Pytorch implementation
 
 ---
 
