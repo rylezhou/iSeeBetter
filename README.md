@@ -107,9 +107,7 @@ Train the model using:
 
 To use the pre-trained model and test on a random video from within the dataset:
 
-```python3 iSeeBetterTest.py```
-
-Use parameter ```--upscale_only``` to turn off initial downscaling.
+```python3 iSeeBetterTest.py --upscale_only```
 
 ## Acknowledgements
 
