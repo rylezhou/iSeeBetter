@@ -2,7 +2,7 @@
 
 ---
 
-### PDF: **[SpringerLink](https://link.springer.com/article/10.1007/s41095-020-0175-7)** | **[arXiv](https://arxiv.org/abs/2006.11161)** 
+### PDF: **[arXiv](https://arxiv.org/abs/2006.11161)** 
 
 
 ## Required Packages
