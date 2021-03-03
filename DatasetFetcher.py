@@ -15,13 +15,16 @@ import zipfile
 
 ################################################### DATASETFETCHER KNOBS ###############################################
 # URL to get the the Vimeo90K dataset (get the original test set - not downsampled or downgraded by noise) from
-DATASET_URL = "http://data.csail.mit.edu/tofu/testset/vimeo_test_clean.zip"
+
+# DATASET_URL = "http://data.csail.mit.edu/tofu/testset/vimeo_test_clean.zip"
+DATASET_URL = "http://data.csail.mit.edu/tofu/dataset/vimeo_septuplet.zip"
 
 # Folder where all the data resides
 DATA_FOLDER = "vimeo_septuplet"
 
 # Folder within data where the HR dataset resides
-SOURCE_PATH = os.path.join(DATA_FOLDER, "vimeo_test_clean")
+# SOURCE_PATH = os.path.join(DATA_FOLDER, "vimeo_test_clean")
+SOURCE_PATH = os.path.join(DATA_FOLDER, "vimeo_train_test")
 
 # Filename of the dataset
 DATASET_FILE = os.path.basename(DATASET_URL)
