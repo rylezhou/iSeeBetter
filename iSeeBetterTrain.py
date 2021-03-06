@@ -186,6 +186,14 @@ def saveModelParams(epoch, runningResults, netG, netD):
 
     if epoch % 1 == 0 and epoch != 0:
         out_path = 'statistics/'
+        if not os.path.exists(out_path):
+            try:
+                os.mkdir(out_path)
+            except OSError:
+                logger.info("Creation of the directory %s failed", out_path)
+            else:
+                logger.debug("Successfully created the directory: %s", out_path)
+            
         data_frame = pd.DataFrame(data={'DLoss': results['DLoss'], 'GLoss': results['GLoss'], 'DScore': results['DScore'],
                                   'GScore': results['GScore']},#, 'PSNR': results['PSNR'], 'SSIM': results['SSIM']},
                                   index=range(1, epoch + 1))
