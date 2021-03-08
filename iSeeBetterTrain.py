@@ -23,7 +23,7 @@ UPSCALE_FACTOR = 4
 parser = argparse.ArgumentParser(description='Train iSeeBetter: Super Resolution Models')
 parser.add_argument('--upscale_factor', type=int, default=4, help="super resolution upscale factor")
 parser.add_argument('--batchSize', type=int, default=2, help='training batch size')
-parser.add_argument('--testBatchSize', type=int, default=5, help='testing batch size')
+# parser.add_argument('--testBatchSize', type=int, default=5, help='testing batch size')
 parser.add_argument('--start_epoch', type=int, default=1, help='Starting epoch for continuing training')
 parser.add_argument('--nEpochs', type=int, default=150, help='number of epochs to train for')
 parser.add_argument('--snapshots', type=int, default=1, help='Snapshots')
@@ -166,7 +166,7 @@ def trainModel(epoch, training_data_loader, netG, netD, optimizerD, optimizerG, 
 
     return runningResults
 
-def saveModelParams(epoch, runningResults, netG, netD):
+def saveModelParams(epoch, runningResults, netG, netD, data_frame):
     results = {'DLoss': [], 'GLoss': [], 'DScore': [], 'GScore': [], 'PSNR': [], 'SSIM': []}
 
     # Save model parameters
@@ -193,14 +193,13 @@ def saveModelParams(epoch, runningResults, netG, netD):
                 logger.info("Creation of the directory %s failed", out_path)
             else:
                 logger.debug("Successfully created the directory: %s", out_path)
-            
-        data_frame = pd.DataFrame(data={'DLoss', 'GLoss', 'DScore','GScore'})
-        data_frame.loc[epoch + 1, 'DLoss'] = results['DLoss']
-        data_frame.loc[epoch + 1, 'GLoss'] = results['GLoss']
-        data_frame.loc[epoch + 1, 'DScore'] = results['DScore']
-        data_frame.loc[epoch + 1, 'GScore'] = results['GScore']
+                  
+        data_frame.loc[epoch, 'DLoss'] = results['DLoss']
+        data_frame.loc[epoch, 'GLoss'] = results['GLoss']
+        data_frame.loc[epoch, 'DScore'] = results['DScore']
+        data_frame.loc[epoch, 'GScore'] = results['GScore']
     
-        data_frame.to_csv(out_path + 'iSeeBetter_' + str(UPSCALE_FACTOR) + '_Train_Results.csv', index_label='Epoch')
+        data_frame.to_csv(out_path + 'iSeeBetter_' + str(UPSCALE_FACTOR) + '_TrainResults.csv', index_label='Epoch')
 
 def main():
     """ Lets begin the training process! """
@@ -264,12 +263,14 @@ def main():
     if args.pretrained:
         modelPath = os.path.join(args.save_folder + args.pretrained_sr)
         utils.loadPreTrainedModel(gpuMode=args.gpu_mode, model=netG, modelPath=modelPath)
-
+        
+    data_frame = pd.DataFrame(data={'DLoss', 'GLoss', 'DScore','GScore'})
+    
     for epoch in range(args.start_epoch, args.nEpochs + 1):
         runningResults = trainModel(epoch, training_data_loader, netG, netD, optimizerD, optimizerG, generatorCriterion, device, args)
 
         if (epoch + 1) % (args.snapshots) == 0:
-            saveModelParams(epoch, runningResults, netG, netD)
+            saveModelParams(epoch, runningResults, netG, netD, data_frame)
 
 if __name__ == "__main__":
     main()
