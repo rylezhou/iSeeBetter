@@ -195,10 +195,10 @@ def saveModelParams(epoch, runningResults, netG, netD):
                 logger.debug("Successfully created the directory: %s", out_path)
             
         data_frame = pd.DataFrame(data={'DLoss', 'GLoss', 'DScore','GScore'})
-        data_frame.loc[epoch, 'DLoss'] = results['DLoss']
-        data_frame.loc[epoch, 'GLoss'] = results['GLoss']
-        data_frame.loc[epoch, 'DScore'] = results['DScore']
-        data_frame.loc[epoch, 'GScore'] = results['GScore']
+        data_frame.loc[epoch + 1, 'DLoss'] = results['DLoss']
+        data_frame.loc[epoch + 1, 'GLoss'] = results['GLoss']
+        data_frame.loc[epoch + 1, 'DScore'] = results['DScore']
+        data_frame.loc[epoch + 1, 'GScore'] = results['GScore']
     
         data_frame.to_csv(out_path + 'iSeeBetter_' + str(UPSCALE_FACTOR) + '_Train_Results.csv', index_label='Epoch')
 
