@@ -30,7 +30,7 @@ SOURCE_PATH = os.path.join(DATA_FOLDER, "vimeo_train_test")
 DATASET_FILE = os.path.basename(DATASET_URL)
 
 # Destination folder
-DEST_PATH = os.path.join(DATA_FOLDER, "HR")
+# DEST_PATH = os.path.join(DATA_FOLDER, "HR")
 ########################################################################################################################
 
 parser = argparse.ArgumentParser(description='iSeeBetter Dataset Fetcher.')
@@ -82,22 +82,22 @@ for currentPath, _, currentFiles in os.walk(SOURCE_PATH):
     if ".DS_Store" in currentFiles:
         os.remove(os.path.join(currentPath, ".DS_Store"))
 
-# Make a list of video sequences
-sequencesPath = os.path.join(SOURCE_PATH, "sequences")
-videoList = os.listdir(sequencesPath)
-videoList.sort()
+# # Make a list of video sequences
+# sequencesPath = os.path.join(SOURCE_PATH, "sequences")
+# videoList = os.listdir(sequencesPath)
+# videoList.sort()
 
-# Go through each video sequence and copy it over in the structure we need
-count = 0
-for video in videoList:
-   videoPath = os.path.join(sequencesPath, video)
-   framesList = os.listdir(videoPath)
-   framesList.sort()
+# # Go through each video sequence and copy it over in the structure we need
+# count = 0
+# for video in videoList:
+#    videoPath = os.path.join(sequencesPath, video)
+#    framesList = os.listdir(videoPath)
+#    framesList.sort()
 
-   for frames in framesList:
-       frames_path = os.path.join(videoPath, frames)
-       count += 1
-       new_frames_name = count
-       des = os.path.join(DEST_PATH, str(new_frames_name))
-       logger.info("Creating: %s", des)
-       shutil.copytree(frames_path, des)
+#    for frames in framesList:
+#        frames_path = os.path.join(videoPath, frames)
+#        count += 1
+#        new_frames_name = count
+#        des = os.path.join(DEST_PATH, str(new_frames_name))
+#        logger.info("Creating: %s", des)
+#        shutil.copytree(frames_path, des)
